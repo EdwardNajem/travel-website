@@ -6,9 +6,9 @@ import Booking from './pages/book';
 import Contact from './pages/contact';
 import Home from './pages/home';
 import Locations from './pages/locations';
+import Login from './pages/login';
 import Request from './pages/request';
 import Upcoming from './pages/upcoming';
-import Login from './pages/Login';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/locations" component={Locations} />
           <Route path="/upcoming" component={Upcoming} />
-          <Route path="/" component={Home} />
+          <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
         </Switch>
       </div>

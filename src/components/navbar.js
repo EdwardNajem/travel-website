@@ -49,7 +49,7 @@ function Navbar() {
       </Link>
       <nav className="navi" ref={navRef}>
         <div className="navib">
-          <NavLink className="home" to="/">
+          <NavLink className="home" to="/home">
             Home
           </NavLink>
 
