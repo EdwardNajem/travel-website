@@ -4,18 +4,13 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/footer';
 import Head from '../components/head';
 import '../style.css';
+
 export default function Home() {
   return (
     <div>
       <Head />
       <div className="banner">
-        <video
-          src=".\images\bgvid.mp4"
-          type="video/mp4"
-          autoplay
-          muted
-          loop
-        >
+        <video src=".\images\bgvid.mp4" type="video/mp4" autoplay muted loop>
           Your browser does not support the video tag.
         </video>
         <div className="content" id="home">

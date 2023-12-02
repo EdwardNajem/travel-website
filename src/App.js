@@ -9,6 +9,7 @@ import Locations from './pages/locations';
 import Login from './pages/login';
 import Request from './pages/request';
 import Upcoming from './pages/upcoming';
+import Signup from './pages/signup';
 
 function App() {
   return (
@@ -21,8 +22,9 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/locations" component={Locations} />
           <Route path="/upcoming" component={Upcoming} />
-          <Route path="/home" component={Home} />
           <Route path="/login" component={Login} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>
