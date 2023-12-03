@@ -3,9 +3,12 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Head from '../components/head';
 import { NavLink } from 'react-router-dom';
+import {loc} from '../components/loc';
+import LocationCard from '../components/Location_card';
 import '../style.css'
 export default function Home()
 {
+  const listItems = loc.map((item) => <LocationCard data={item}/> );
     return(
     <div>
         <Head/>
@@ -18,7 +21,6 @@ export default function Home()
                     <p>Plan your trip with us and travel around the world with the most affordable packages!</p>
                     <NavLink to="./book" className="button">Book Now!</NavLink>
                 </div>
-
             </div> 
         </div>
 
@@ -66,73 +68,12 @@ export default function Home()
   </section>
 
   <h1 >Locations</h1>
-<section class="locations" id="locations">
-    <div class="package-title">
-       
-    </div>
-
-    <div className="location-content">
-        
-        <NavLink to="./locations#Vernazza">
-          <div className="col-content">
-            <img src="./images/p1.jpg" alt=""/>
-            <h5>Italy</h5>
-            <p>Vernazza</p>
-          </div></NavLink>
-
-       
-
-        <NavLink to="./locations#istanbul">
-          <div className="col-content">
-            <img src="./images/l2.jpg" alt=""/>
-            <h5>Turkey</h5>
-            <p>Istanbul</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#paris">
-          <div className="col-content">
-            <img src="./images/l3.jpg" alt=""/>
-            <h5>France</h5>
-            <p>Paris</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#bali">
-	  <div className="col-content">
-            <img src="./images/l4.jpg" alt=""/>
-            <h5>Indonesia</h5>
-            <p>Bali</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#dubai">
- 	  <div className="col-content">
-            <img src="./images/l5.jpg" alt=""/>
-            <h5>United Arab Emirates</h5>
-            <p>Dubai</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#geneva">
-	  <div className="col-content">
-            <img src="./images/l6.jpg" alt=""/>
-            <h5>Switzerland</h5>
-            <p>Geneva</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#port-blair">
-	  <div className="col-content">
-            <img src="./images/l7.jpg" alt=""/>
-            <h5>Andaman & Nicobar</h5>
-            <p>Port Blair</p>
-          </div></NavLink>
-
-        <NavLink to="./locations#rome">
-	  <div className="col-content">
-            	<img src="./images/l8.jpg" alt=""/>
-            	<h5>Italy</h5>
-            	<p>Rome</p>
-          </div></NavLink>
-
-    </div>
-</section>
+  
+ <section className="locations" id="locations">
+ <div className="location-content">
+   {listItems};
+   </div>
+ </section>
 
 <h1>Packages</h1>
 <div className="packages-wrapper"> 

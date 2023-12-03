@@ -4,7 +4,7 @@ import '../style.css';
 
 export default function Navbar() {
   return (
-    <nav>
+    <nav className="navbar">
       <img src="./images/logo.png" className="logo" alt="Logo" title="JustTravels" />
       <ul className="navbar">
         <li><NavLink className="navbar-comp" exact to="/">Home</NavLink></li>
@@ -28,7 +28,7 @@ export default function Navbar() {
             </div>
           </div>
         </li>
-        <li><NavLink className="navbar-comp" to="login.html">Login</NavLink></li>
+        <li><NavLink className="navbar-comp" to="/login">Login</NavLink></li>
       </ul>
     </nav>
   );
