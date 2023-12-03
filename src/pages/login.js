@@ -61,7 +61,7 @@ function Login() {
                   </NavLink>
                 </p>
               </div>
-              <button class="btn" id="login" type="submit" onclick="redirect()">
+              <button class="btn" type="submit">
                 Log In
               </button>
             </form>

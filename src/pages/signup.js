@@ -42,9 +42,9 @@ function Signup() {
               </div>
               <div class="create-account">
                 <p>
-                  Create A New Account?{' '}
-                  <NavLink to="/signup" class="register-link">
-                    Sign Up
+                  Already have an Account?{' '}
+                  <NavLink to="/login" class="register-link">
+                    SIgn in
                   </NavLink>
                 </p>
               </div>
