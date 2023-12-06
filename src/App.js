@@ -7,6 +7,7 @@ import Upcoming from './pages/upcoming';
 import Booking from './pages/book';
 import Request from './pages/request';
 import Login from './pages/login';
+import Signup from './pages/signup';
 import { BrowserRouter , Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
   <Route path="/locations" component={Locations} />
   <Route path="/upcoming" component={Upcoming} />
   <Route path="/login" component={Login} />
+  <Route path="/signup" component={Signup} />
   <Route path="/" component={Home} />
 
 </Switch>

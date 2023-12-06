@@ -3,14 +3,13 @@ import Navbar from '../components/navbar';
 import Footer from '../components/footer';
 import Head from '../components/head';
 import { useState } from 'react';
-import '../style.css'; 
+import '../request.css'; 
 
 export default function Request() {
   const [formData, setFormData] = useState({
     destination: '',
     packageType: '',
     numDays: 0,
-   
     priceRange: '',
   });
 
@@ -28,7 +27,7 @@ export default function Request() {
   const handleFormSubmit = () => {
     if (!formData.destination || !formData.packageType || formData.numDays < 0 || !formData.priceRange) {
       
-      
+
 
 
 

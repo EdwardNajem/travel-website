@@ -11,7 +11,7 @@ export default function footer()
                 <div className="footlinks">
                  <h4>Quick Links</h4>
                  <ul>
-                    <li> <NavLink to="/register" className="navFoot" >Register</NavLink></li>
+                    <li> <NavLink to="/signup" className="navFoot" >Register</NavLink></li>
                     <li> <NavLink to="/about" className="navFoot" >About us</NavLink></li>
                     <li> <NavLink to="/contact" className="navFoot" >Contact us</NavLink></li>
                  </ul>

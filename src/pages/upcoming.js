@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from '../components/navbar';
 import Head from '../components/head';
-import '../style.css'; 
+import '../upcoming.css'; 
 export default function Upcoming() {
   const [docWidth, setDocWidth] = useState(document.body.clientWidth);
   const [slidesWidth, setSlidesWidth] = useState(0);

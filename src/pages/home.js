@@ -13,7 +13,7 @@ export default function Home()
     <div>
         <Head/>
         <div className="banner">
-            <video src="./images/bgvid.mp4" type="video/mp4" autoplay muted loop></video>
+            <video src="./images/bgvid.mp4" type="video/mp4" autoPlay muted loop></video>
             <div className="content" id="home">
                 <Navbar/>
                 <div className="title">
@@ -67,7 +67,7 @@ export default function Home()
 
   </section>
 
-  <h1 >Locations</h1>
+  <h1>Locations</h1>
   
  <section className="locations" id="locations">
  <div className="location-content">
