@@ -9,32 +9,32 @@ import '../book.css';
 const destinations = [
     {
       id: 1,
-      name: 'Vernazza',
+      name: 'Brooklyn',
       image: './images/p1.jpg',
     },
     {
       id: 2,
-      name: 'Istanbul',
+      name: 'Manhattan',
       image:'./images/l2.jpg',
     },
     {
       id: 3,
-      name: 'Paris',
+      name: 'Bronx',
       image: './images/l3.jpg',
     },
     {
       id: 4,
-      name: 'Rome',
+      name: 'Queens',
       image: './images/l4.jpg',
     },
     {
       id: 5,
-      name: 'Dubai',
+      name: 'Staten Island',
       image: './images/l5.jpg',
     },
     {
       id: 6,
-      name: 'Cancun',
+      name: 'Chicago',
       image: './images/l6.jpg',
     },
   ];

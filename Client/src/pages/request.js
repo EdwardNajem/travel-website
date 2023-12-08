@@ -7,7 +7,6 @@ import '../request.css';
 
 export default function Request() {
   const [formData, setFormData] = useState({
-    destination: '',
     packageType: '',
     numDays: 0,
     priceRange: '',
@@ -25,7 +24,7 @@ export default function Request() {
   };
 
   const handleFormSubmit = () => {
-    if (!formData.destination || !formData.packageType || formData.numDays < 0 || !formData.priceRange) {
+    if ( !formData.packageType || formData.numDays < 0 || !formData.priceRange) {
       
 
 
@@ -36,7 +35,6 @@ export default function Request() {
 
     setTableData([...tableData, formData]);
     setFormData({
-      destination: '',
       packageType: '',
       numDays: 0,
      
@@ -58,19 +56,6 @@ export default function Request() {
       <div className="request-container">
         <h1 className="req-title" >Please enter a package you want our agency to offer</h1>
         <form className="request-form">
-          <label htmlFor="destination" className="form-label">
-            Destination:
-          </label>
-          <input
-            type="text"
-            id="destination"
-            name="destination"
-            value={formData.destination}
-            onChange={handleInputChange}
-            className="form-input"
-          />
-          <br />
-          <br />
 
           <label htmlFor="packageType" className="form-label">
             Package Type:

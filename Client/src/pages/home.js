@@ -18,7 +18,7 @@ export default function Home()
                 <Navbar/>
                 <div className="title">
                     <h1>JUST TRAVEL</h1>
-                    <p>Plan your trip with us and travel around the world with the most affordable packages!</p>
+                    <p>Plan your trip with us and travel around the US with the most affordable packages!</p>
                     <NavLink to="./book" className="button">Book Now!</NavLink>
                 </div>
             </div> 
