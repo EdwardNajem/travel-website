@@ -1,10 +1,11 @@
 import React from 'react';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
-import './login.css';
-
+import '../login.css';
+import Head from '../components/head';
 function Signup() {
   return (
+    <div><Head/>
     <div class="login-background">
       <div class="signup-container">
         <div class="login-section">
@@ -22,7 +23,7 @@ function Signup() {
                   type="email"
                   id="log_email"
                   required
-                  onchange="reverse()"
+                  
                 />
                 <label>Email</label>
               </div>
@@ -32,6 +33,13 @@ function Signup() {
                 </span>
                 <input type="password" id="log_pass" required />
                 <label>Password</label>
+              </div>
+              <div class="input-box">
+                <span class="icon">
+                  <i class="bx bxs-lock-alt"></i>
+                </span>
+                <input type="password" id="log_pass" required />
+                <label>Re-enter Password</label>
               </div>
               <div class="remember-password">
                 <label for="">
@@ -55,6 +63,7 @@ function Signup() {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 }
