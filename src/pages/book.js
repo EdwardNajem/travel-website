@@ -9,32 +9,38 @@ import '../book.css';
 const destinations = [
     {
       id: 1,
-      name: 'Vernazza',
+      country:'italy',
+      city: 'Vernazza',
       image: './images/p1.jpg',
     },
     {
       id: 2,
-      name: 'Istanbul',
+      country:'Turkey',
+      city: 'Istanbul',
       image:'./images/l2.jpg',
     },
     {
       id: 3,
-      name: 'Paris',
+      country:'France',
+      city: 'Paris',
       image: './images/l3.jpg',
     },
     {
       id: 4,
-      name: 'Rome',
+      country:'italy',
+      city: 'Rome',
       image: './images/l4.jpg',
     },
     {
       id: 5,
-      name: 'Dubai',
+      country:'UAE',
+      city: 'Dubai',
       image: './images/l5.jpg',
     },
     {
       id: 6,
-      name: 'Cancun',
+      country:'Mexico',
+      city: 'Cancun',
       image: './images/l6.jpg',
     },
   ];
@@ -75,9 +81,9 @@ const destinations = [
                 <img src={destination.image} alt={destination.name} className="destination-image" />
                 
                 <div className="destination-info">
-                  <h2>{destination.name}</h2>
+                  <h2>{destination.country}</h2>
                   <p>
-                    <FaMapMarkerAlt /> {destination.name}
+                    <FaMapMarkerAlt /> {destination.city}
                   </p>
                   <p>
                     <FaCalendar /> Book
