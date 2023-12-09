@@ -1,62 +1,46 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { NavLink } from 'react-router-dom';
 import '../login.css';
 import Head from '../components/head';
+import { useNavigate } from 'react-router-dom';
 
-function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+function Login({
+  Email,
+  Password,
+  setEmail,
+  setPass,
+  usersData,
+  setIsLoggedin,
+}) {
+  const navigate = useNavigate();
+  console.log(usersData);
 
-  const handleEmailChange = (e) => {
-    setEmail(e.target.value);
-  };
+  function loginhandle() {
+    const user = usersData.find(
+      (item) => item.email === Email && item.password === Password
+    );
 
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleLogin = async (e) => {
-    e.preventDefault();
-    console.log('Fetching:', '/login');
-    try {
-      const response = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (data.success) {
-        // Handle successful login, e.g., redirect to another page
-        console.log('Login successful');
-      } else {
-        // Handle failed login, show an error message
-        console.error('Login failed:', data.message);
-      }
-    } catch (error) {
-      console.error('Error during login:', error.message);
+    if (user) {
+      setIsLoggedin(true);
+      navigate('/');
+    } else {
+      alert('Invalid email or password'); // You can replace this with your desired failure action
     }
-  };
+  }
 
   return (
     <div>
       <Head />
       <div className="login-background">
         <div className="signup-container">
-        
-            <NavLink to="/">
-              <HiArrowNarrowLeft />
-            </NavLink>
-            
-            
-        
+          <NavLink to="/">
+            <HiArrowNarrowLeft />
+          </NavLink>
+
           <div className="login-section">
             <div className="form-box login">
-              <form onSubmit={handleLogin}>
+              <form>
                 <h2>Sign In</h2>
                 <div className="input-box">
                   <span className="icon">
@@ -65,8 +49,10 @@ function Login() {
                   <input
                     type="email"
                     id="log_email"
-                    value={email}
-                    onChange={handleEmailChange}
+                    value={Email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
                     required
                   />
                   <label>Email</label>
@@ -78,8 +64,10 @@ function Login() {
                   <input
                     type="password"
                     id="log_pass"
-                    value={password}
-                    onChange={handlePasswordChange}
+                    value={Password}
+                    onChange={(e) => {
+                      setPass(e.target.value);
+                    }}
                     required
                   />
                   <label>Password</label>
@@ -99,7 +87,7 @@ function Login() {
                     </NavLink>
                   </p>
                 </div>
-                <button className="btn" type="submit">
+                <button className="btn" type="submit" onClick={loginhandle}>
                   Log In
                 </button>
               </form>

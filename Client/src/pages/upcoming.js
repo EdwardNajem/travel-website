@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Head from '../components/head';
 import Navbar from '../components/navbar';
 import '../upcoming.css';
-export default function Upcoming() {
+export default function Upcoming({ isLoggedin, setIsLoggedin }) {
   const [docWidth, setDocWidth] = useState(document.body.clientWidth);
   const [slidesWidth, setSlidesWidth] = useState(0);
 
@@ -32,7 +32,7 @@ export default function Upcoming() {
   return (
     <div className="upcoming">
       <Head />
-      <Navbar />
+      <Navbar isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
 
       <div id="wrap" onMouseMove={handleMouseMove}>
         <a href="." className="hb">

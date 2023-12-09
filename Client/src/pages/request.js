@@ -1,19 +1,30 @@
-import React from 'react';
-import Navbar from '../components/navbar';
+import Axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useEffect, useState } from 'react';
+import { Button, Modal } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import Footer from '../components/footer';
 import Head from '../components/head';
-import { useState } from 'react';
-import '../request.css'; 
+import Navbar from '../components/navbar';
+import '../request.css';
 
-export default function Request() {
+export default function Request({  isLoggedin, setIsLoggedin }) {
+  const navigate = useNavigate();
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/api/viewRequest/`).then(
+      (response) => {
+        setTableData(response.data);
+      }
+    );
+  }, []);
+
   const [formData, setFormData] = useState({
     packageType: '',
     numDays: 0,
     priceRange: '',
+    accountid: 0,
   });
 
-
-  
   const [tableData, setTableData] = useState([]);
 
   const handleInputChange = (e) => {
@@ -24,39 +35,38 @@ export default function Request() {
   };
 
   const handleFormSubmit = () => {
-    if ( !formData.packageType || formData.numDays < 0 || !formData.priceRange) {
-      
-
-
-
-
+    if (!formData.packageType || formData.numDays < 0 || !formData.priceRange) {
       return;
     }
 
-    setTableData([...tableData, formData]);
+    Axios.post(`http://localhost:3001/api/request/`, {
+      formData: formData,
+    });
+
     setFormData({
       packageType: '',
       numDays: 0,
-     
       priceRange: '',
+      accountid: 0,
     });
   };
 
-  const handleDeleteRow = (index) => {
+  const handleDeleteRow = (id, index) => {
     const updatedTableData = [...tableData];
     updatedTableData.splice(index, 1);
     setTableData(updatedTableData);
+    Axios.delete(`http://localhost:3001/api/deleteRequest/${id}`);
   };
 
   return (
     <div className="request">
       <Head />
-      <Navbar />
-
+      <Navbar isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
       <div className="request-container">
-        <h1 className="req-title" >Please enter a package you want our agency to offer</h1>
+        <h1 className="req-title">
+          Please enter a package you want our agency to offer
+        </h1>
         <form className="request-form">
-
           <label htmlFor="packageType" className="form-label">
             Package Type:
           </label>
@@ -90,7 +100,6 @@ export default function Request() {
           <br />
           <br />
 
-      
           <label htmlFor="priceRange" className="form-label">
             Price Range:
           </label>
@@ -109,7 +118,11 @@ export default function Request() {
           <br />
           <br />
 
-          <button type="button" onClick={handleFormSubmit} className="form-button">
+          <button
+            type="button"
+            onClick={handleFormSubmit}
+            className="form-button"
+          >
             Request
           </button>
         </form>
@@ -117,10 +130,9 @@ export default function Request() {
         <table className="request-table">
           <thead>
             <tr>
-              <th>Destination</th>
               <th>Package Type</th>
               <th>Number of Days</th>
-         
+
               <th>Price Range</th>
               <th>Delete</th>
             </tr>
@@ -128,13 +140,16 @@ export default function Request() {
           <tbody>
             {tableData.map((row, index) => (
               <tr key={index}>
-                <td>{row.destination}</td>
-                <td>{row.packageType}</td>
-                <td>{row.numDays}</td>
-               
-                <td>{row.priceRange}</td>
+                <td>{row.typs}</td>
+                <td>{row.days}</td>
+
+                <td>{row.ranges}</td>
                 <td>
-                  <button type="button" onClick={() => handleDeleteRow(index)} className="row-delete">
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteRow(row.id, index)}
+                    className="row-delete"
+                  >
                     Delete
                   </button>
                 </td>
@@ -143,8 +158,22 @@ export default function Request() {
           </tbody>
         </table>
       </div>
-
       <Footer />
+      {!isLoggedin && (
+        <Modal show={!isLoggedin} centered>
+          <Modal.Header closeButton>
+            <Modal.Title>Please LogIn First</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>In Order to purchase a package you have to Log In.</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={() => navigate('/login')}>
+              OK
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
     </div>
   );
 }

@@ -1,9 +1,8 @@
 import React from 'react';
 import '../style.css';
 
-
-function Location_Detail(props) {
-   const{ id ,thumb2 , country, description } = props.data;
+function LocationDetail(props) {
+  const { id, thumb2, country, description } = props.data;
   return (
     <div className="location-detail" id={id}>
       <div className="location-img">
@@ -17,11 +16,9 @@ function Location_Detail(props) {
         <i className="bx bxs-star"></i>
         <i className="bx bxs-star"></i>
       </div>
-      <p>
-       {description}
-      </p>
+      <p>{description}</p>
     </div>
   );
 }
 
-export default Location_Detail;
+export default LocationDetail;

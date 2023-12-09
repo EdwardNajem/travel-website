@@ -1,17 +1,17 @@
 import React from 'react';
-import Location_Detail from '../components/Location_Detail';
+import LocationDetail from '../components/Location_Detail';
 import Footer from '../components/footer';
 import Head from '../components/head';
 import { loc } from '../components/loc';
 import Navbar from '../components/navbar';
 import '../style.css';
-export default function Locations() {
-  const listItems = loc.map((item) => <Location_Detail data={item} />);
+export default function Locations({ isLoggedin, setIsLoggedin }) {
+  const listItems = loc.map((item) => <LocationDetail data={item} />);
   return (
     <div>
       <Head />
       <div className="location-body">
-        <Navbar />
+        <Navbar isLoggedin={isLoggedin} setIsLoggedin={setIsLoggedin} />
 
         <section className="location-section">
           <div className="location-heading">
