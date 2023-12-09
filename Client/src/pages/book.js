@@ -1,12 +1,12 @@
 // Book.js
-import { FaMapMarkerAlt, FaCalendar, FaMoneyBillWave } from 'react-icons/fa';
 import React, { useState } from 'react';
-import Navbar from '../components/navbar';
+import { Button, Modal } from 'react-bootstrap';
+import { FaCalendar, FaMapMarkerAlt, FaMoneyBillWave } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import '../book.css';
 import Footer from '../components/footer';
 import Head from '../components/head';
-import '../book.css';
-import { Button, Modal } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/navbar';
 
 const destinations = [
   {
@@ -106,10 +106,12 @@ const Book = ({ isLoggedin, setIsLoggedin }) => {
       {
         <Modal show={!isLoggedin} centered>
           <Modal.Header closeButton>
-            <Modal.Title>Please LogIn First</Modal.Title>
+            <Modal.Title>Please Log In First</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>In Order to Book your ticket you have to Log In.</p>
+            <p>
+              In order to book your ticket you have to log in into your account.
+            </p>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="primary" onClick={() => navigate('/login')}>

@@ -37,10 +37,10 @@ app.delete('/api/deleteRequest/:id', (req, res) => {
 });
 
 app.put('/api/updateRequest/', (req, res) => {
-  const idToUpdate = req.body.id;
-  const typs = req.body.formData.packageType;
-  const days = req.body.formData.numDays;
-  const ranges = req.body.formData.priceRange;
+  const idToUpdate = req.body.row.id;
+  const typs = req.body.row.typs;
+  const days = req.body.row.days;
+  const ranges = req.body.row.ranges;
   const sqlUpdate =
     'UPDATE requests SET typs = ?, days = ? , ranges = ? WHERE id = ?';
   db.query(sqlUpdate, [typs, days, ranges, idToUpdate], (err, result) => {

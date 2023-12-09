@@ -8,6 +8,14 @@
   width: 100%;
 }
 
+svg {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 30px;
+  height: 22px;
+  z-index: 100000;
+}
 .login-container {
   position: absolute;
   left: 50%;
@@ -36,7 +44,6 @@
   background-size: cover;
   border-radius: 20px;
   overflow: hidden;
-  z-index: 100000;
 }
 
 .login-item {
@@ -149,10 +156,12 @@
   margin: -15px 0 15px;
   display: flex;
   justify-content: space-between;
+  margin-top: 80px;
 }
 .remember-password label input {
   accent-color: black;
   margin-right: 3px;
+  margin-bottom: 15px;
 }
 .remember-password a {
   color: black;
@@ -197,4 +206,11 @@
 }
 #log_pass {
   border-bottom: 2px solid black;
+}
+
+.validation-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }

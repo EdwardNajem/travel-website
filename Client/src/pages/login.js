@@ -1,9 +1,9 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
-import { NavLink } from 'react-router-dom';
-import '../login.css';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Head from '../components/head';
-import { useNavigate } from 'react-router-dom';
+import '../login.css';
 
 function Login({
   Email,
@@ -25,7 +25,7 @@ function Login({
       setIsLoggedin(true);
       navigate('/');
     } else {
-      alert('Invalid email or password'); // You can replace this with your desired failure action
+      alert('Invalid email or password');
     }
   }
 
@@ -87,9 +87,9 @@ function Login({
                     </NavLink>
                   </p>
                 </div>
-                <button className="btn" type="submit" onClick={loginhandle}>
+                <Button className="btn" type="submit" onClick={loginhandle}>
                   Log In
-                </button>
+                </Button>
               </form>
             </div>
           </div>

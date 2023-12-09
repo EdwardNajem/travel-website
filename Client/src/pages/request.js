@@ -8,24 +8,23 @@ import Head from '../components/head';
 import Navbar from '../components/navbar';
 import '../request.css';
 
-export default function Request({  isLoggedin, setIsLoggedin }) {
+export default function Request({ isLoggedin, setIsLoggedin }) {
   const navigate = useNavigate();
-  useEffect(() => {
-    Axios.get(`http://localhost:3001/api/viewRequest/`).then(
-      (response) => {
-        setTableData(response.data);
-      }
-    );
-  }, []);
-
+  const [editingIndex, setEditingIndex] = useState(null);
+  const [editedRow, setEditedRow] = useState({});
   const [formData, setFormData] = useState({
     packageType: '',
     numDays: 0,
     priceRange: '',
     accountid: 0,
   });
-
   const [tableData, setTableData] = useState([]);
+
+  useEffect(() => {
+    Axios.get(`http://localhost:3001/api/viewRequest/`).then((response) => {
+      setTableData(response.data);
+    });
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -58,11 +57,15 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
     Axios.delete(`http://localhost:3001/api/deleteRequest/${id}`);
   };
 
-  const handleEditRow = (id, index) => {
-    if (!formData.packageType || formData.numDays < 0 || !formData.priceRange) {
-      return;
-    }
-    Axios.put("http://localhost:3001/api/updateRequest/", {id, formData});
+  const handleEditRow = (row, index) => {
+    setEditingIndex(index);
+    setEditedRow({ ...row });
+  };
+
+  const handleSaveRow = (id, index) => {
+    Axios.put('http://localhost:3001/api/updateRequest/', { row: editedRow });
+    setEditingIndex(null);
+    setEditedRow({});
   };
 
   return (
@@ -147,18 +150,77 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
           <tbody>
             {tableData.map((row, index) => (
               <tr key={index}>
-                <td>{row.typs}</td>
-                <td>{row.days}</td>
-
-                <td>{row.ranges}</td>
                 <td>
-                  <button
-                    type="button"
-                    onClick={() => handleEditRow(row.id, index)}
-                    className="row-delete"
-                  >
-                    Edit
-                  </button>
+                  {editingIndex === index ? (
+                    <select
+                      name="packageType"
+                      value={editedRow.typs}
+                      onChange={(e) =>
+                        setEditedRow({ ...editedRow, typs: e.target.value })
+                      }
+                      className="table-input"
+                    >
+                      <option value="Silver">Silver</option>
+                      <option value="Gold">Gold</option>
+                      <option value="Platinum">Platinum</option>
+                    </select>
+                  ) : (
+                    row.typs
+                  )}
+                </td>
+                <td>
+                  {editingIndex === index ? (
+                    <input
+                      className="table-input"
+                      value={editedRow.days}
+                      onChange={(e) =>
+                        setEditedRow({ ...editedRow, days: e.target.value })
+                      }
+                    />
+                  ) : (
+                    row.days
+                  )}
+                </td>
+
+                <td>
+                  {editingIndex === index ? (
+                    <select
+                      name="priceRange"
+                      value={editedRow.ranges}
+                      onChange={(e) =>
+                        setEditedRow({
+                          ...editedRow,
+                          ranges: e.target.value,
+                        })
+                      }
+                      className="table-input"
+                    >
+                      <option value="low">Low ($1000 - $2000)</option>
+                      <option value="medium">Medium ($2000 - $4000)</option>
+                      <option value="high">High ($4000+)</option>
+                    </select>
+                  ) : (
+                    row.ranges
+                  )}
+                </td>
+                <td>
+                  {editingIndex === index ? (
+                    <button
+                      type="button"
+                      onClick={() => handleSaveRow(row.id, index)}
+                      className="row-delete"
+                    >
+                      Save
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handleEditRow(row, index)}
+                      className="row-delete"
+                    >
+                      Edit
+                    </button>
+                  )}
                 </td>
                 <td>
                   <button
@@ -178,13 +240,19 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
       {!isLoggedin && (
         <Modal show={!isLoggedin} centered>
           <Modal.Header closeButton>
-            <Modal.Title>Please LogIn First</Modal.Title>
+            <Modal.Title>Please Log In First</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <p>In Order to purchase a package you have to Log In.</p>
+            <p>
+              In order to purchase a package you have to log into your account.
+            </p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="primary" onClick={() => navigate('/login')}>
+            <Button
+              className="btn"
+              variant="primary"
+              onClick={() => navigate('/login')}
+            >
               OK
             </Button>
           </Modal.Footer>
