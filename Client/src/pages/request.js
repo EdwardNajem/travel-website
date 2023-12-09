@@ -58,6 +58,13 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
     Axios.delete(`http://localhost:3001/api/deleteRequest/${id}`);
   };
 
+  const handleEditRow = (id, index) => {
+    if (!formData.packageType || formData.numDays < 0 || !formData.priceRange) {
+      return;
+    }
+    Axios.put("http://localhost:3001/api/updateRequest/", {id, formData});
+  };
+
   return (
     <div className="request">
       <Head />
@@ -132,8 +139,8 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
             <tr>
               <th>Package Type</th>
               <th>Number of Days</th>
-
               <th>Price Range</th>
+              <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
@@ -144,6 +151,15 @@ export default function Request({  isLoggedin, setIsLoggedin }) {
                 <td>{row.days}</td>
 
                 <td>{row.ranges}</td>
+                <td>
+                  <button
+                    type="button"
+                    onClick={() => handleEditRow(row.id, index)}
+                    className="row-delete"
+                  >
+                    Edit
+                  </button>
+                </td>
                 <td>
                   <button
                     type="button"

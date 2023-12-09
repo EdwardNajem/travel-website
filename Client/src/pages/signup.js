@@ -16,17 +16,26 @@ function Signup({
 }) {
   const navigate = useNavigate();
   const handleR = () => {
-    if (Email && Password && CPassword && Password === CPassword) {
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Password validation regex
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (
+      emailRegex.test(Email) &&
+      passwordRegex.test(Password) &&
+      Password === CPassword
+    ) {
       axios.post('http://localhost:3001/api/insertUser', {
         mail: Email,
         pass: Password,
       });
-      alert('success !');
+      alert('Success!');
       navigate('/login');
     } else {
-      alert(
-        'Please fill in all the required fields and make sure that your password is right'
-      );
+      alert('Please fill in all the required fields correctly.');
     }
   };
 
